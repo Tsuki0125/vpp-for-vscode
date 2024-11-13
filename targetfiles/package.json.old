@@ -2,7 +2,7 @@
 	"name": "veriloghdl",
 	"displayName": "Verilog-HDL/SystemVerilog/Bluespec SystemVerilog",
 	"description": "Verilog-HDL/SystemVerilog/Bluespec SystemVerilog support for VS Code",
-	"version": "1.15.5",
+	"version": "1.15.1",
 	"publisher": "mshr-h",
 	"homepage": "https://github.com/mshr-h/vscode-verilog-hdl-support",
 	"repository": {
@@ -574,7 +574,7 @@
 		"js-yaml": "^4.1.0",
 		"semver": "^7.6.0",
 		"vscode-languageclient": "^9.0.1",
-		"which": "^5.0.0"
+		"which": "^4.0.0"
 	},
 	"devDependencies": {
 		"@types/antlr4": "4.11.6",
@@ -586,7 +586,7 @@
 		"@typescript-eslint/eslint-plugin": "^7.3.1",
 		"@typescript-eslint/parser": "^7.3.1",
 		"@vscode/test-electron": "^2.3.9",
-		"@vscode/vsce": "~3.1.0",
+		"@vscode/vsce": "~2.24.0",
 		"antlr4ts-cli": "0.5.0-alpha.4",
 		"esbuild": "^0.20.2",
 		"eslint": "8.57.0",
@@ -607,7 +607,7 @@
 		"isApplicationScoped": false,
 		"isPreReleaseVersion": false,
 		"hasPreReleaseVersion": false,
-		"installedTimestamp": 1731467242663,
+		"installedTimestamp": 1725850017709,
 		"pinned": false,
 		"preRelease": false,
 		"source": "gallery"
