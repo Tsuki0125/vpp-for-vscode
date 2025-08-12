@@ -34,7 +34,12 @@
 		["table", "endtable"],
 		["task", "endtask"],
 		["`if", "`endif"],
-		["`for", "`endfor"]
+		["`for", "`endfor"],
+		["`ifnlet", "`endif"],
+		["`iflet", "`endif"],
+		["`ifndef", "`endif"],
+		["`ifdef", "`endif"],
+		["`func", "`endfunc"]
 	],
 
 	"autoClosingPairs": [
