@@ -2,7 +2,7 @@
 	"name": "veriloghdl",
 	"displayName": "Verilog-HDL/SystemVerilog/Bluespec SystemVerilog",
 	"description": "Verilog-HDL/SystemVerilog/Bluespec SystemVerilog support for VS Code",
-	"version": "1.16.1",
+	"version": "1.16.0",
 	"publisher": "mshr-h",
 	"homepage": "https://github.com/mshr-h/vscode-verilog-hdl-support",
 	"repository": {
@@ -38,21 +38,6 @@
 					".vpp"
 				],
 				"configuration": "./configs/verilog.configuration.json"
-			},
-			{
-				"id": "verilogams",
-				"aliases": [
-					"Verilog-AMS",
-					"verilog-ams",
-					"vams",
-					"VAMS",
-					"verilogams"
-				],
-				"extensions": [
-					".vams",
-					".va"
-				],
-				"configuration": "./configs/verilogams.configuration.json"
 			},
 			{
 				"id": "systemverilog",
@@ -157,11 +142,6 @@
 				"path": "./syntaxes/verilog.tmLanguage.json"
 			},
 			{
-				"language": "verilogams",
-				"scopeName": "source.verilogams",
-				"path": "./syntaxes/verilogams.tmLanguage.json"
-			},
-			{
 				"language": "systemverilog",
 				"scopeName": "source.systemverilog",
 				"path": "./syntaxes/systemverilog.tmLanguage.json"
@@ -216,14 +196,6 @@
 		"snippets": [
 			{
 				"language": "verilog",
-				"path": "./snippets/verilog.json"
-			},
-			{
-				"language": "verilogams",
-				"path": "./snippets/verilogams.json"
-			},
-			{
-				"language": "verilogams",
 				"path": "./snippets/verilog.json"
 			},
 			{
@@ -608,7 +580,7 @@
 		"@types/antlr4": "4.11.6",
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "~10.0.6",
-		"@types/node": "~22.10.0",
+		"@types/node": "~20.11.30",
 		"@types/vscode": "^1.75.0",
 		"@types/which": "^3.0.3",
 		"@typescript-eslint/eslint-plugin": "^7.3.1",
@@ -618,21 +590,27 @@
 		"antlr4ts-cli": "0.5.0-alpha.4",
 		"esbuild": "^0.20.2",
 		"eslint": "8.57.0",
-		"eslint-config-prettier": "^10.0.0",
+		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "2.29.1",
 		"eslint-plugin-n": "17.8.1",
 		"eslint-plugin-promise": "7.0.0",
 		"glob": "^11.0.0",
-		"mocha": "^11.0.0",
+		"mocha": "^10.3.0",
 		"ts-loader": "^9.5.1",
 		"typescript": "5.4.3"
 	},
 	"__metadata": {
 		"id": "feb7e3b5-7d35-4f95-a3d2-61eeaa12efa5",
-		"publisherDisplayName": "mshr-h",
+		"publisherDisplayName": "Masahiro Hiramori",
 		"publisherId": "fcf32c99-a624-437b-9f47-9333ea128623",
-		"installedTimestamp": 1755486157023,
 		"targetPlatform": "undefined",
-		"size": 2624190
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1731467242663,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery",
+		"size": 2644914
 	}
 }
