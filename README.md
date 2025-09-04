@@ -14,6 +14,11 @@ Download or clone this repo to local and copy all files in `targetfiles`  to the
 
 ## 3. known issue
 
-Whenever the VScode Verilog-HDL plugin is auto-updated, the hacked configuration files will be overwritten. 
+1. Whenever the VScode Verilog-HDL plugin is auto-updated, the hacked configuration files will be overwritten. 
 
-You need to manually re-hack these target files and manually update the plugin version number in `package.json` to the latest version to avoid VScode auto-updating and overwriting again.
+You need to manually turn off the VScode Verilog-HDL plugin's auto-update function.
+
+2. when using the  vpp `let` out of a verilog module, ctags cannot  create symbol table correctly. Hover feature may not work in this case.
+
+There is no way to solve this problem, because it needs to completely modify the ctag's src code to support VPP syntax.
+
