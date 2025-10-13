@@ -1,0 +1,261 @@
+{
+	"module with parameters": {
+		"prefix": ["paramod", "module #"],
+		"body": [
+			"module ${1:moduleName} #(",
+			"\t${2:parameters}",
+			") (",
+			"\t${3:ports}",
+			");",
+			"\t$0",
+			"endmodule"
+		],
+		"description": "Insert a module with parameter"
+	},
+	"module without parameters": {
+		"prefix": "module",
+		"body": [
+			"module ${1:moduleName} (",
+			"\t${2:ports}",
+			");",
+			"\t$0",
+			"endmodule"
+		],
+		"description": "Insert a module without parameter"
+	},
+	"always": {
+		"prefix": ["al", "always"],
+		"body": [
+			"always @($1) begin",
+			"\t$2",
+			"end"
+		],
+		"description": "Insert an always block"
+	},
+	"posedge": {
+		"prefix": "posedge",
+		"body": "posedge",
+		"description": "Insert posedge keyword"
+	},
+	"negedge": {
+		"prefix": "negedge",
+		"body": "negedge",
+		"description": "Insert negedge keyword"
+	},
+	"begin/end": {
+		"prefix": "begin",
+		"body": [
+			"begin",
+			"\t$1",
+			"end"
+		],
+		"description": "Insert a begin ... end block"
+	},
+	"end": {
+		"prefix": "end",
+		"body": "end",
+		"description": "Insert end keyword"
+	},
+	"initial": {
+		"prefix": "initial",
+		"body": [
+			"initial begin",
+			"\t$0",
+			"end"
+		],
+		"description": "initial begin ... end"
+	},
+	"case": {
+		"prefix": "case",
+		"body": [
+			"case (${1:param})",
+			"\t$2: $3",
+			"\tdefault: $4",
+			"endcase"
+		],
+		"description": "case () ... endcase"
+	},
+	"casex": {
+		"prefix": "casex",
+		"body": [
+			"casex (${1:param})",
+			"\t$2: $3",
+			"\tdefault: $4",
+			"endcase"
+		],
+		"description": "casex () ... endcase"
+	},
+	"casez": {
+		"prefix": "casez",
+		"body": [
+			"casez (${1:param})",
+			"\t$2: $3",
+			"\tdefault: $4",
+			"endcase"
+		],
+		"description": "casez () ... endcase"
+	},
+	"reg": {
+		"prefix": "reg",
+		"body": [
+			"reg"
+		],
+		"description": "reg reg_name;"
+	},
+	"wire": {
+		"prefix": "wire",
+		"body": [
+			"wire"
+		],
+		"description": "wire wire_name;"
+	},
+	"parameter": {
+		"prefix": "parameter",
+		"body": [
+			"parameter"
+		],
+		"description": "paramter var = val;"
+	},
+	"localparam": {
+		"prefix": "localparam",
+		"body": "localparam",
+		"description": "localparam var = val"
+	},
+	"integer": {
+		"prefix": "integer",
+		"body": "integer",
+		"description": "integer int_name"
+	},
+	"signed": {
+		"prefix": "signed",
+		"body": "signed",
+		"description": "signed datatype name"
+	},
+	"include": {
+		"prefix": ["include", "`include"],
+		"body": [
+			"`include"
+		],
+		"description": "`include \"..\""
+	},
+	"define": {
+		"prefix": ["def", "define", "`define"],
+		"body": [
+			"`define"
+		],
+		"description": "`define macro"
+	},
+	"ifdef": {
+		"prefix": ["ifdef", "`ifdef"],
+		"body": "`ifdef",
+		"description": "`ifdef macro"
+	},
+	"ifndef": {
+		"prefix": ["ifndef", "`ifndef"],
+		"body": "`ifndef",
+		"description": "`ifndef macro"
+	},
+	"elsif": {
+		"prefix": ["`elsif"],
+		"body": "`elsif",
+		"description": "`elsif macro"
+	},
+	"elseifmacro": {
+		"prefix": ["`elseif"],
+		"body": "`elseif",
+		"description": "`elseif macro"
+	},
+	"endif": {
+		"prefix": ["endif", "`endif"],
+		"body": "`endif",
+		"description": "`endif macro"
+	},
+	"undef": {
+		"prefix": ["undef", "`undef"],
+		"body": "`undef",
+		"description": "`undef macro"
+	},
+	"timescale": {
+		"prefix": ["ts", "timescale", "`timescale"],
+		"body": [
+			"`timescale"
+		]
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if (${1:conditions}) begin",
+			"\t$0",
+			"end"
+		],
+		"description": "if (...) begin ... end"
+	},
+	"else_if": {
+		"prefix": ["elseif"],
+		"body": [
+			"else if (${1:conditions}) begin",
+			"\t$0",
+			"end"
+		],
+		"description": "else if (...) begin ... end"
+	},
+	"else": {
+		"prefix": ["else"],
+		"body": [
+			"else begin",
+			"\t$0",
+			"end"
+		],
+		"description": "else if (...) begin ... end"
+	},
+	"for loop": {
+		"prefix": "for",
+		"body": [
+			"for ($1 ; ; ) begin",
+			"\t$0",
+			"end"
+		],
+		"description": "for (...) begin ... end"
+	},
+	"while loop": {
+		"prefix": "while",
+		"body": [
+			"while ($1) begin",
+			"\t$2",
+			"end"
+		],
+		"description": "while (...) begin ... end"
+	},
+	"forever": {
+		"prefix": "forever",
+		"body": [
+			"forever begin",
+			"\t$0",
+			"end"
+		],
+		"description": "forever begin ... end"
+	},
+	"function": {
+		"prefix": "function",
+		"body": [
+			"function $1;",
+			"\t$0",
+			"endfunction"
+		],
+		"description": "function (...) ... endfunction"
+	},
+	"generate": {
+		"prefix": "generate",
+		"body": [
+			"generate",
+			"\t$1",
+			"endgenerate"
+		],
+		"description": "generate (...) ... endgenerate"
+	},
+	"genvar": {
+		"prefix": "genvar",
+		"body": "genvar",
+		"description": "genvar i"
+	}
+}
