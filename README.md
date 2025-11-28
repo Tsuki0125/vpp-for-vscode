@@ -31,8 +31,11 @@ if you are using Cursor, copy these target files to cursor's extension directory
 2. when using the  vpp `let` out of a verilog module, ctags cannot create symbol table correctly. Hover feature may not work in this case.
 
 	* There is no way to solve this problem, because it needs to completely modify the ctag's code to fully support VPP's syntax.
+	
+	
 
-
+3. Resolve the conflict between cursor's color-theme and Verilog language highlighting：
+   - select   `File` - `preference` - `theme` - `color theme` , and choose `Dark (visual studio dark)`
 
 
 
