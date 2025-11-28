@@ -35,7 +35,7 @@ if you are using Cursor, copy these target files to cursor's extension directory
 	
 
 3. Resolve the conflict between cursor's color-theme and Verilog language highlighting：
-   - select   `File` - `preference` - `theme` - `color theme` , and choose `Dark (visual studio dark)`
+   - select   `File` - `preference` - `theme` - `color theme` , and choose `Dark (default dark)`
 
 
 
