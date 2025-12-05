@@ -20,7 +20,7 @@ if you are using Cursor, copy these target files to cursor's extension directory
 
 
 
-## 3. known issue
+## 3. known issues
 
 1. Whenever the VScode Verilog-HDL plugin is auto-updated, the hacked configuration files will be overwritten. 
 
@@ -32,12 +32,18 @@ if you are using Cursor, copy these target files to cursor's extension directory
 
 	* There is no way to solve this problem, because it needs to completely modify the ctag's code to fully support VPP's syntax.
 	
-	
-
-3. Resolve the conflict between cursor's color-theme and Verilog language highlighting：
-   - select   `File` - `preference` - `theme` - `color theme` , and choose `Dark (default dark)`
 
 
+
+## 4. cursor's issues
+
+1. the conflict between cursor's color-theme and Verilog language highlighting：
+
+- select   `File` - `preference` - `theme` - `color theme` , and choose `Dark (default dark)`
+
+2. cursor does not display the command center (which is on the top center of VScode GUI ) by default
+
+- `CTRL` + `,`  open the cursor's settings dashboard, choose `Window` -`Command Center` 
 
 
 
