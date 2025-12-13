@@ -45,5 +45,9 @@ if you are using Cursor, copy these target files to cursor's extension directory
 
 - `CTRL` + `,`  open the cursor's settings dashboard, choose `Window` -`Command Center` 
 
+3. If you find the **cursor tab** too noisy to use
+
+- you can click `cursor tab` -  `snooze` in the bottom right corner of the bottom bar to temporarily silence it or just disable it globally.
+
 
 
