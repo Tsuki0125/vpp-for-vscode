@@ -39,7 +39,7 @@ if you are using Cursor, copy these target files to cursor's extension directory
 
 1. the conflict between cursor's color-theme and Verilog language highlighting：
 
-- select   `File` - `preference` - `theme` - `color theme` , and choose `Dark (default dark)`
+- select   `File` - `preference` - `theme` - `color theme` , and choose `Dark+ (default dark+)`
 
 2. cursor does not display the command center (which is on the top center of VScode GUI ) by default
 
