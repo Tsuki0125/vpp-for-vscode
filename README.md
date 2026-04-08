@@ -25,14 +25,19 @@ if you are using Cursor, copy these target files to cursor's extension directory
 1. Whenever the VScode Verilog-HDL plugin is auto-updated, the hacked configuration files will be overwritten. 
 
 	* You need to manually turn **off** the VScode Verilog-HDL plugin's auto-update function.
+	
 
 
 
-2. when using the  vpp `let` out of a verilog module, ctags cannot create symbol table correctly. Hover feature may not work in this case.
+2. When using the  vpp `let` out of a verilog module, ctags cannot create symbol table correctly. Hover feature may not work in this case.
 
 	* There is no way to solve this problem, because it needs to completely modify the ctag's code to fully support VPP's syntax.
 	
 
+
+3. Do NOT use verilog/sv language server in vpp/svpp projects unless you know what you are doing.
+	* It will cause many lexical error/warnings. Because the syntax of Verilog/SV is very different from vpp/svpp.
+	* verilog/sv language server: such as `verible`
 
 
 ## 4. cursor's issues
