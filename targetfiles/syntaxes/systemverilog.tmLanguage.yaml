@@ -222,7 +222,7 @@ repository:
             name: string.regexp.systemverilog
           '3':
             name: variable.other.constant.preprocessor.systemverilog
-      - match: (`)(include|include_s|include_1xi|timescale|default_nettype|unconnected_drive|line|begin_keywords)\b
+      - match: (`)(include|include_s|include_xi|include_1xi|timescale|default_nettype|unconnected_drive|line|begin_keywords)\b
         captures:
           '1':
             name: punctuation.definition.directive.systemverilog

@@ -60,7 +60,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "`(?!(celldefine|endcelldefine|default_nettype|define|undef|ifdef|ifndef|else|endif|include|include_s|include_1xi|resetall|timescale|unconnected_drive|nounconnected_drive))[a-z_A-Z][a-zA-Z0-9_$]*",
+          "match": "`(?!(celldefine|endcelldefine|default_nettype|define|undef|ifdef|ifndef|else|endif|include|include_s|include_xi|include_1xi|resetall|timescale|unconnected_drive|nounconnected_drive))[a-z_A-Z][a-zA-Z0-9_$]*",
           "name": "variable.other.constant.verilog"
         },
         {
@@ -167,7 +167,7 @@
           "name": "keyword.other.verilog"
         },
         {
-          "match": "^\\s*`((cell)?define|default_(decay_time|nettype|trireg_strength)|delay_mode_(path|unit|zero)|if|else(if)?|let|for|endfor|ifdef|ifndef|include|include_s|include_1xi|end(if|celldefine)|(no)?unconnected_drive|resetall|timescale|undef)\\b",
+          "match": "^\\s*`((cell)?define|default_(decay_time|nettype|trireg_strength)|delay_mode_(path|unit|zero)|if|else(if)?|let|for|endfor|ifdef|ifndef|include|include_s|include_xi|include_1xi|end(if|celldefine)|(no)?unconnected_drive|resetall|timescale|undef)\\b",
           "name": "keyword.other.compiler.directive.verilog"
         },
         {
