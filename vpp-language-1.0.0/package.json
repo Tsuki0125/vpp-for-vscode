@@ -1,0 +1,61 @@
+{
+  "name": "vpp-language",
+  "displayName": "VPP - Verilog Preprocessor Language",
+  "description": "Syntax highlighting, code folding, and keyword jumping for VPP (Verilog Preprocessor) language",
+  "version": "0.1.0",
+  "publisher": "synopsys-internal",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vpp",
+        "aliases": [
+          "VPP",
+          "Verilog Preprocessor"
+        ],
+        "extensions": [
+          ".vpp",
+          ".svpp"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vpp",
+        "scopeName": "source.vpp",
+        "path": "./syntaxes/vpp.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "vpp.matchKeyword",
+        "title": "VPP: Jump to Matching Keyword"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vpp.matchKeyword",
+        "key": "ctrl+shift+\\",
+        "mac": "cmd+shift+\\",
+        "when": "editorTextFocus && editorLangId == vpp"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}

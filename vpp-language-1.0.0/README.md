@@ -84,10 +84,10 @@ Supported keyword cycles:
 ### Option 1: Manual Install (Recommended)
 
 1. Copy the entire plugin folder to your extensions directory:
-   - **VSCode (Windows)**: `%USERPROFILE%\.vscode\extensions\vpp-language-1.0.0`
-   - **Cursor (Windows)**: `%USERPROFILE%\.cursor\extensions\vpp-language-1.0.0`
-   - **macOS**: `~/.vscode/extensions/vpp-language-1.0.0`
-   - **Linux**: `~/.vscode/extensions/vpp-language-1.0.0`
+   - **VSCode (Windows)**: `%USERPROFILE%\.vscode\extensions\vpp-language-0.1.0`
+   - **Cursor (Windows)**: `%USERPROFILE%\.cursor\extensions\vpp-language-0.1.0`
+   - **macOS**: `~/.vscode/extensions/vpp-language-0.1.0`
+   - **Linux**: `~/.vscode/extensions/vpp-language-0.1.0`
 2. Restart VSCode / Cursor
 
 ### Option 2: Package as VSIX

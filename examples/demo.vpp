@@ -1,0 +1,158 @@
+`// This is a VPP comment (won't appear in output)
+
+`define IC_WAYS 4
+`define IC_TRAM_RANGE 15:0
+`define DATA_RANGE 31:0
+
+`let TAG = "tague"
+`let ncpus = 3
+
+// ============================================================
+// For loop example
+// ============================================================
+`for (`i = 0; `i < `IC_WAYS; `i++)
+    wire [`IC_TRAM_RANGE] `TAG::_mem_rdata`i;
+`endfor
+
+// ============================================================
+// While loop example
+// ============================================================
+`let i = 0
+`while (`i < `IC_WAYS)
+    wire [`IC_TRAM_RANGE] tag_mem_rdata`i;
+    `let i = `i + 1
+`endwhile
+
+// ============================================================
+// Conditional example
+// ============================================================
+`ifdef HAS_ICACHE
+    `if `IC_WAYS > 2
+        wire [3:0] way_select;
+    `elseif `IC_WAYS == 2
+        wire way_select;
+    `else
+        // single way, no select needed
+    `endif
+`endif
+
+// ============================================================
+// Switch example
+// ============================================================
+`switch (`PER_BUS_OPTION)
+    `case 1
+        .dbu_per_ahb_hlock    (dbu_per_ahb_hlock),
+    `breaksw
+
+    `case 0
+        .dbu_per_bvci_cmdval  (dbu_per_bvci_cmdval),
+    `breaksw
+
+    `default
+        // default case
+`endswitch
+
+// ============================================================
+// Function example
+// ============================================================
+`func FF TOP Z
+    `for (`ix = 0; `ix < `TOP; `ix++)
+        `ix `Z
+    `endfor
+`endfunc
+
+`FF(5, 4)
+
+// ============================================================
+// Iterator (fori) example
+// ============================================================
+`func upto yield lo hi
+    `for (`ix = `lo; `ix <= `hi; `ix++)
+        `yield(`ix)
+    `endfor
+`endfunc
+
+`fori val : `upto(1, 3)
+    // number is `val
+`endfori
+
+// ============================================================
+// deflines example
+// ============================================================
+`deflines not_basecase
+    begin
+        basecase_inst = 1'b0;
+    end
+`enddeflines
+
+// ============================================================
+// Block comment
+// ============================================================
+`/*
+    This is a block comment.
+    Everything here is ignored.
+`*/
+
+// ============================================================
+// JavaScript integration
+// ============================================================
+<script>
+var extensions = [
+    { name: "rsc", description: "read and shred card", opcode: 7 },
+    { name: "era", description: "erase disk", opcode: 9 },
+];
+</script>
+
+`let E = JS("extensions")
+`for (`i = 0; `i < `E.length; `i++)
+    `let ext = `E[`i]
+    `let name = `ext.name
+    `let opc = `ext.opcode
+    module `name(clk);
+    endmodule
+`endfor
+
+// ============================================================
+// Verilog module with VPP
+// ============================================================
+module cache_ctrl (
+    input wire clk,
+    input wire rst_n,
+    `for (`w = 0; `w < `IC_WAYS; `w++)
+    input wire [`DATA_RANGE] way`w::_data,
+    `endfor
+    output reg [`DATA_RANGE] selected_data
+);
+
+    always_comb begin
+        `switch (`IC_WAYS)
+            `case 2
+                selected_data = way_sel ? way1_data : way0_data;
+            `breaksw
+            `case 4
+                case (way_sel)
+                    2'b00: selected_data = way0_data;
+                    2'b01: selected_data = way1_data;
+                    2'b10: selected_data = way2_data;
+                    2'b11: selected_data = way3_data;
+                endcase
+            `breaksw
+        `endswitch
+    end
+
+endmodule
+
+// ============================================================
+// Built-in functions
+// ============================================================
+`let bits = LOG2CEIL(`IC_WAYS)
+`let max_val = MAX(256, 512, 1024)
+`let min_val = MIN(`IC_WAYS, 8)
+
+`if INCLUDE_EXISTS("config.in")
+    `include "config.in"
+`endif
+
+// Predefined variables
+// Current file: `__FYLE__
+// Current line: `__LYNE__
