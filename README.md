@@ -96,7 +96,7 @@ Requires Node.js:
 
 ```bash
 npm install -g @vscode/vsce
-cd vpp_plugin
+cd vpp-language-1.0.0
 npm install
 npm run compile
 vsce package
@@ -106,7 +106,7 @@ Then in VSCode/Cursor: Extensions → "..." → "Install from VSIX..."
 
 ### Option 3: Development Mode
 
-1. Open the `vpp_plugin` folder in VSCode / Cursor
+1. Open the `vpp-language-1.0.0` folder in VSCode / Cursor
 2. Press `F5` to launch the Extension Development Host
 
 ## Supported File Types

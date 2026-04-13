@@ -2,7 +2,7 @@
   "name": "vpp-language",
   "displayName": "VPP - Verilog Preprocessor Language",
   "description": "Syntax highlighting, code folding, and keyword jumping for VPP (Verilog Preprocessor) language",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "synopsys-internal",
   "engines": {
     "vscode": "^1.75.0"
