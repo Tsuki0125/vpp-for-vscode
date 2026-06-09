@@ -3,7 +3,7 @@
   "displayName": "VPP - Verilog Preprocessor Language",
   "description": "Syntax highlighting, code folding, and keyword jumping for VPP (Verilog Preprocessor) language",
   "version": "1.0.0",
-  "publisher": "synopsys-internal",
+  "publisher": "ARC-internal",
   "engines": {
     "vscode": "^1.75.0"
   },
