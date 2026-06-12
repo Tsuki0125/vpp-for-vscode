@@ -4,6 +4,10 @@
   "description": "Syntax highlighting, code folding, and keyword jumping for VPP (Verilog Preprocessor) language",
   "version": "1.1.0",
   "publisher": "ARC-internal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tsuki0125/vpp-for-vscode.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },

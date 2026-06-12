@@ -1,10 +1,41 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
-
-const vscode = require("vscode");
-
+const vscode = __importStar(require("vscode"));
 const KEYWORD_GROUPS = [
     // VPP directive groups
     ['`if', '`elseif', '`else', '`endif'],
@@ -45,15 +76,13 @@ const KEYWORD_GROUPS = [
     ['fork', 'join_any'],
     ['fork', 'join_none'],
 ];
-
 const ALL_MATCHABLE = new Set();
 for (const group of KEYWORD_GROUPS) {
-    for (const kw of group) ALL_MATCHABLE.add(kw);
+    for (const kw of group)
+        ALL_MATCHABLE.add(kw);
 }
-
 function findAllKeywordsOnLine(line) {
     const results = [];
-
     // VPP keywords (backtick-prefixed)
     const vppRegex = /`(if|elseif|else|endif|ifdef|ifndef|iflet|ifnlet|for|endfor|while|endwhile|func|endfunc|fori|endfori|switch|case|breaksw|default|endswitch|endsw|deflines|enddeflines)\b/g;
     let match;
@@ -64,7 +93,6 @@ function findAllKeywordsOnLine(line) {
             endCol: match.index + match[0].length,
         });
     }
-
     // VPP block comment markers
     const bcStart = /`\/\*/g;
     while ((match = bcStart.exec(line)) !== null) {
@@ -74,22 +102,20 @@ function findAllKeywordsOnLine(line) {
     while ((match = bcEnd.exec(line)) !== null) {
         results.push({ keyword: '`*/', col: match.index, endCol: match.index + 3 });
     }
-
     // Verilog keywords (word-boundary delimited, no backtick prefix)
     const verilogRegex = /\b(begin|end|module|endmodule|function|endfunction|task|endtask|generate|endgenerate|casex|casez|case|endcase|class|endclass|package|endpackage|interface|endinterface|program|endprogram|specify|endspecify|primitive|endprimitive|table|endtable|config|endconfig|clocking|endclocking|property|endproperty|sequence|endsequence|checker|endchecker|fork|join_any|join_none|join)\b/g;
     while ((match = verilogRegex.exec(line)) !== null) {
-        if (match.index > 0 && line[match.index - 1] === '`') continue;
+        if (match.index > 0 && line[match.index - 1] === '`')
+            continue;
         results.push({
             keyword: match[0],
             col: match.index,
             endCol: match.index + match[0].length,
         });
     }
-
     results.sort((a, b) => a.col - b.col);
     return results;
 }
-
 function getKeywordAtCursor(line, cursorCol) {
     const keywords = findAllKeywordsOnLine(line);
     for (const kw of keywords) {
@@ -99,102 +125,109 @@ function getKeywordAtCursor(line, cursorCol) {
     }
     return null;
 }
-
 function findMatchingGroups(keyword) {
     return KEYWORD_GROUPS.filter(group => group.includes(keyword));
 }
-
 function findMatchingKeyword(document, currentLine, currentCol, keyword) {
     const groups = findMatchingGroups(keyword);
-    if (groups.length === 0) return null;
-
+    if (groups.length === 0)
+        return null;
     for (const group of groups) {
         const idx = group.indexOf(keyword);
         if (idx === 0) {
             const result = searchForward(document, currentLine, currentCol, group);
-            if (result) return result;
-        } else if (idx === group.length - 1) {
+            if (result)
+                return result;
+        }
+        else if (idx === group.length - 1) {
             const result = searchBackward(document, currentLine, currentCol, group);
-            if (result) return result;
-        } else {
+            if (result)
+                return result;
+        }
+        else {
             const result = searchForwardFromMiddle(document, currentLine, currentCol, keyword, group);
-            if (result) return result;
+            if (result)
+                return result;
         }
     }
     return null;
 }
-
 function searchForward(document, startLine, startCol, group) {
     const opener = group[0];
     const closer = group[group.length - 1];
     const targets = new Set(group.slice(1));
     let depth = 1;
-
     for (let i = startLine; i < document.lineCount; i++) {
         const keywords = findAllKeywordsOnLine(document.lineAt(i).text);
         for (const kw of keywords) {
-            if (i === startLine && kw.col <= startCol) continue;
-            if (!group.includes(kw.keyword)) continue;
-
+            if (i === startLine && kw.col <= startCol)
+                continue;
+            if (!group.includes(kw.keyword))
+                continue;
             if (kw.keyword === opener) {
                 depth++;
-            } else if (targets.has(kw.keyword)) {
-                if (depth === 1) return { line: i, col: kw.col };
-                if (kw.keyword === closer) depth--;
+            }
+            else if (targets.has(kw.keyword)) {
+                if (depth === 1)
+                    return { line: i, col: kw.col };
+                if (kw.keyword === closer)
+                    depth--;
             }
         }
     }
     return null;
 }
-
 function searchBackward(document, startLine, startCol, group) {
     const opener = group[0];
     const closer = group[group.length - 1];
     let depth = 1;
-
     for (let i = startLine; i >= 0; i--) {
         const keywords = findAllKeywordsOnLine(document.lineAt(i).text);
         for (let k = keywords.length - 1; k >= 0; k--) {
             const kw = keywords[k];
-            if (i === startLine && kw.col >= startCol) continue;
-            if (!group.includes(kw.keyword)) continue;
-
+            if (i === startLine && kw.col >= startCol)
+                continue;
+            if (!group.includes(kw.keyword))
+                continue;
             if (kw.keyword === closer) {
                 depth++;
-            } else if (kw.keyword === opener) {
+            }
+            else if (kw.keyword === opener) {
                 depth--;
-                if (depth === 0) return { line: i, col: kw.col };
+                if (depth === 0)
+                    return { line: i, col: kw.col };
             }
         }
     }
     return null;
 }
-
 function searchForwardFromMiddle(document, startLine, startCol, currentKeyword, group) {
     const opener = group[0];
     const closer = group[group.length - 1];
     const laterKeywords = new Set(group.slice(group.indexOf(currentKeyword) + 1));
     let depth = 0;
-
     for (let i = startLine; i < document.lineCount; i++) {
         const keywords = findAllKeywordsOnLine(document.lineAt(i).text);
         for (const kw of keywords) {
-            if (i === startLine && kw.col <= startCol) continue;
-            if (!group.includes(kw.keyword)) continue;
-
+            if (i === startLine && kw.col <= startCol)
+                continue;
+            if (!group.includes(kw.keyword))
+                continue;
             if (kw.keyword === opener) {
                 depth++;
-            } else if (kw.keyword === closer) {
-                if (depth === 0) return { line: i, col: kw.col };
+            }
+            else if (kw.keyword === closer) {
+                if (depth === 0)
+                    return { line: i, col: kw.col };
                 depth--;
-            } else if (laterKeywords.has(kw.keyword) && depth === 0) {
+            }
+            else if (laterKeywords.has(kw.keyword) && depth === 0) {
                 return { line: i, col: kw.col };
             }
         }
     }
     return null;
 }
-
 class VppFoldingRangeProvider {
     provideFoldingRanges(document, _context, _token) {
         const ranges = [];
@@ -234,22 +267,22 @@ class VppFoldingRangeProvider {
             'checker': ['endchecker'],
             'fork': ['join', 'join_any', 'join_none'],
         };
-
         const openerSet = new Set(Object.keys(foldPairs));
         const closerToOpener = {};
         for (const [opener, closers] of Object.entries(foldPairs)) {
             for (const closer of closers) {
-                if (!closerToOpener[closer]) closerToOpener[closer] = [];
+                if (!closerToOpener[closer])
+                    closerToOpener[closer] = [];
                 closerToOpener[closer].push(opener);
             }
         }
-
         for (let i = 0; i < document.lineCount; i++) {
             const keywords = findAllKeywordsOnLine(document.lineAt(i).text);
             for (const kw of keywords) {
                 if (openerSet.has(kw.keyword)) {
                     stack.push({ keyword: kw.keyword, line: i });
-                } else if (closerToOpener[kw.keyword]) {
+                }
+                else if (closerToOpener[kw.keyword]) {
                     const expectedOpeners = closerToOpener[kw.keyword];
                     for (let j = stack.length - 1; j >= 0; j--) {
                         if (expectedOpeners.includes(stack[j].keyword)) {
@@ -264,36 +297,32 @@ class VppFoldingRangeProvider {
                 }
             }
         }
-
         // <script>...</script> blocks
         const scriptStack = [];
         for (let i = 0; i < document.lineCount; i++) {
             const lineText = document.lineAt(i).text.trim();
             if (lineText === '<script>') {
                 scriptStack.push(i);
-            } else if (lineText === '</script>' && scriptStack.length > 0) {
+            }
+            else if (lineText === '</script>' && scriptStack.length > 0) {
                 const start = scriptStack.pop();
                 ranges.push(new vscode.FoldingRange(start, i, vscode.FoldingRangeKind.Region));
             }
         }
-
         return ranges;
     }
 }
-
 function activate(context) {
     const selector = { language: 'vpp', scheme: 'file' };
     const BRACKET_CHARS = new Set(['(', ')', '[', ']', '{', '}']);
-
     const jumpCommand = vscode.commands.registerCommand('vpp.matchKeyword', async () => {
         const editor = vscode.window.activeTextEditor;
-        if (!editor || editor.document.languageId !== 'vpp') return;
-
+        if (!editor || editor.document.languageId !== 'vpp')
+            return;
         const document = editor.document;
         const position = editor.selection.active;
         const lineText = document.lineAt(position.line).text;
         const col = position.character;
-
         // 1. Cursor on bracket → native bracket jump
         const charAtCursor = col < lineText.length ? lineText[col] : '';
         const charBefore = col > 0 ? lineText[col - 1] : '';
@@ -301,41 +330,28 @@ function activate(context) {
             await vscode.commands.executeCommand('editor.action.jumpToBracket');
             return;
         }
-
         // 2. Cursor on a matchable keyword → keyword jump
         let found = getKeywordAtCursor(lineText, col);
-
         // 3. Fallback: first matchable keyword on the line
         if (!found) {
             const all = findAllKeywordsOnLine(lineText);
-            found = all.find(kw => ALL_MATCHABLE.has(kw.keyword)) || null;
+            found = all.find(kw => ALL_MATCHABLE.has(kw.keyword)) ?? null;
         }
-
         if (!found || !ALL_MATCHABLE.has(found.keyword)) {
             await vscode.commands.executeCommand('editor.action.jumpToBracket');
             return;
         }
-
         const target = findMatchingKeyword(document, position.line, found.col, found.keyword);
         if (!target) {
             await vscode.commands.executeCommand('editor.action.jumpToBracket');
             return;
         }
-
         const newPosition = new vscode.Position(target.line, target.col);
         editor.selection = new vscode.Selection(newPosition, newPosition);
-        editor.revealRange(
-            new vscode.Range(newPosition, newPosition),
-            vscode.TextEditorRevealType.InCenterIfOutsideViewport
-        );
+        editor.revealRange(new vscode.Range(newPosition, newPosition), vscode.TextEditorRevealType.InCenterIfOutsideViewport);
     });
-
-    const foldingProvider = vscode.languages.registerFoldingRangeProvider(
-        selector,
-        new VppFoldingRangeProvider()
-    );
-
+    const foldingProvider = vscode.languages.registerFoldingRangeProvider(selector, new VppFoldingRangeProvider());
     context.subscriptions.push(jumpCommand, foldingProvider);
 }
-
-function deactivate() {}
+function deactivate() { }
+//# sourceMappingURL=extension.js.map
