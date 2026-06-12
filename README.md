@@ -100,6 +100,8 @@ Supported keyword cycles:
 
 ## Installation
 
+> `<version>` below is a placeholder — replace it with the actual version number (the `version` field in `package.json`, e.g. `1.1.0`).
+
 ### Option 1: Install from VSIX (Recommended)
 
 1. Get the prebuilt `vpp-language-<version>.vsix` package.
@@ -111,10 +113,10 @@ Supported keyword cycles:
 ### Option 2: Manual Folder Install
 
 1. Copy the entire plugin folder to your extensions directory:
-   - **VSCode (Windows)**: `%USERPROFILE%\.vscode\extensions\vpp-language-1.1.0`
-   - **Cursor (Windows)**: `%USERPROFILE%\.cursor\extensions\vpp-language-1.1.0`
-   - **macOS**: `~/.vscode/extensions/vpp-language-1.1.0`
-   - **Linux**: `~/.vscode/extensions/vpp-language-1.1.0`
+   - **VSCode (Windows)**: `%USERPROFILE%\.vscode\extensions\vpp-language-<version>`
+   - **Cursor (Windows)**: `%USERPROFILE%\.cursor\extensions\vpp-language-<version>`
+   - **macOS**: `~/.vscode/extensions/vpp-language-<version>`
+   - **Linux**: `~/.vscode/extensions/vpp-language-<version>`
 2. Restart VSCode / Cursor
 
 ### Option 3: Build the VSIX from Source
@@ -123,7 +125,7 @@ Requires Node.js:
 
 ```bash
 npm install -g @vscode/vsce
-cd vpp-language-1.1.0
+cd vpp-language-<version>
 npm install
 npm run compile
 vsce package
@@ -133,7 +135,7 @@ This produces a `.vsix` file you can install via Option 1.
 
 ### Option 4: Development Mode
 
-1. Open the `vpp-language-1.1.0` folder in VSCode / Cursor
+1. Open the `vpp-language-<version>` folder in VSCode / Cursor
 2. Press `F5` to launch the Extension Development Host
 
 ## Supported File Types

@@ -2,7 +2,7 @@
   "name": "vpp-language",
   "displayName": "VPP - Verilog Preprocessor Language",
   "description": "Syntax highlighting, code folding, and keyword jumping for VPP (Verilog Preprocessor) language",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publisher": "ARC-internal",
   "repository": {
     "type": "git",
