@@ -18,7 +18,26 @@ VPP extends standard Verilog preprocessor directives with powerful iteration, co
 - **Embedded JavaScript**: `<script>...</script>` blocks with JS syntax highlighting
 - **Strings, numbers (including Verilog literals like `4'b1010`), operators**
 
-### 2. Code Folding
+### 2. Block & Bracket Pair Colorization
+
+In addition to standard `()`, `[]`, `{}`, Verilog/SystemVerilog block keyword pairs are treated as brackets, so VS Code's built-in **Bracket Pair Colorization** colors each nesting level with a different color (just like nested parentheses):
+
+| Open | Close |
+|------|-------|
+| begin | end |
+| module | endmodule |
+| function | endfunction |
+| task | endtask |
+| generate | endgenerate |
+| case / casex / casez | endcase |
+| class, package, interface, program, specify, primitive, table, config, clocking, property, sequence, checker | their `end*` counterparts |
+| fork | join / join\_any / join\_none |
+
+This relies on the editor setting `editor.bracketPairColorization.enabled` (on by default). You can customize the colors via the `workbench.colorCustomizations` → `editorBracketHighlight.foreground1..6` theme keys.
+
+> Note: VPP backtick directives (\`if / \`endif, \`for / \`endfor, …) are **not** included here — VS Code's bracket engine cannot reliably distinguish prefixes like \`if vs \`ifdef. They remain fully supported by folding and keyword jumping below.
+
+### 3. Code Folding
 
 Supports folding for the following block pairs:
 
@@ -42,7 +61,7 @@ Supports folding for the following block pairs:
 | fork | join / join\_any / join\_none |
 | ... and more Verilog/SV block pairs | |
 
-### 3. Keyword Jumping (Matchit)
+### 4. Keyword Jumping (Matchit)
 
 Vim matchit-style cycling between paired keywords.
 
@@ -84,10 +103,10 @@ Supported keyword cycles:
 ### Option 1: Manual Install (Recommended)
 
 1. Copy the entire plugin folder to your extensions directory:
-   - **VSCode (Windows)**: `%USERPROFILE%\.vscode\extensions\vpp-language-1.0.0`
-   - **Cursor (Windows)**: `%USERPROFILE%\.cursor\extensions\vpp-language-1.0.0`
-   - **macOS**: `~/.vscode/extensions/vpp-language-1.0.0`
-   - **Linux**: `~/.vscode/extensions/vpp-language-1.0.0`
+   - **VSCode (Windows)**: `%USERPROFILE%\.vscode\extensions\vpp-language-1.1.0`
+   - **Cursor (Windows)**: `%USERPROFILE%\.cursor\extensions\vpp-language-1.1.0`
+   - **macOS**: `~/.vscode/extensions/vpp-language-1.1.0`
+   - **Linux**: `~/.vscode/extensions/vpp-language-1.1.0`
 2. Restart VSCode / Cursor
 
 ### Option 2: Package as VSIX
@@ -96,7 +115,7 @@ Requires Node.js:
 
 ```bash
 npm install -g @vscode/vsce
-cd vpp-language-1.0.0
+cd vpp-language-1.1.0
 npm install
 npm run compile
 vsce package
@@ -106,7 +125,7 @@ Then in VSCode/Cursor: Extensions → "..." → "Install from VSIX..."
 
 ### Option 3: Development Mode
 
-1. Open the `vpp-language-1.0.0` folder in VSCode / Cursor
+1. Open the `vpp-language-1.1.0` folder in VSCode / Cursor
 2. Press `F5` to launch the Extension Development Host
 
 ## Supported File Types
